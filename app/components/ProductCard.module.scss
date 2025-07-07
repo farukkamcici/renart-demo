@@ -1,8 +1,23 @@
 .card{
   flex: 0 0 auto;
-  width: 240px;
   background: transparent;
   overflow: hidden;
+  width: 90%;                     /* mobilde tek kart için %90 */
+
+  /* Tablet: 2 kart görmek için yaklaşık %48 */
+  @media (min-width: 480px) {
+    width: 48%;
+  }
+
+  /* Küçük masaüstü: 3 kart için ~32% */
+  @media (min-width: 768px) {
+    width: 32%;
+  }
+
+  /* Çok geniş ekran: maksimum 300px ile sınırla */
+  @media (min-width: 1200px) {
+    width: min(300px, 32%);
+  }
 
     img{
       border-radius: 2rem;
@@ -35,6 +50,7 @@
       width: 20px;
       height: 20px;
       margin-right: 8px;
+      cursor: pointer;
     }
 
     .btnActive{

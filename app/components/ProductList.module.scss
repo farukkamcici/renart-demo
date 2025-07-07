@@ -27,13 +27,25 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
+  background: rgba(255,255,255,0.8);
   border: none;
-  font-size: 4rem;
-  font-weight: lighter;
-  padding: 0.25rem 0.5rem;
+  font-size: 3rem;
   cursor: pointer;
   z-index: 1;
+  display: none;
+}
+
+.nav.prev {
+  left: 8px;
+}
+.nav.next {
+  right: 8px;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: block;
+  }
 }
 .nav:first-of-type { left: 0; }
 .nav:last-of-type  { right: 0; }
