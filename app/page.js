@@ -4,8 +4,10 @@ import ProductList from './components/ProductList';
 const Page = async () => {
     let products = [];
 
+    const API_URL = 'https://renart-demo.vercel.app/api';
+
     try {
-        const res = await fetch(`http://localhost:3000/api/products`);
+        const res = await fetch(API_URL + `/products`);
         if (!res.ok) throw new Error('Products can not be fetched');
         products = await res.json();
     } catch (error) {
