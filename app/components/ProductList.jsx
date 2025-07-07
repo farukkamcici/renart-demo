@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import styles from './ProductList.module.scss';
 import ProductCard from './ProductCard';
 
-export default function ProductList({ products }) {
+export default function ProductList({ products, defaultColor }) {
     const containerRef = useRef(null);
     const [cardStep, setCardStep] = useState(0);
 
@@ -49,7 +49,7 @@ export default function ProductList({ products }) {
             </button>
             <div ref={containerRef} className={styles.scrollContainer}>
                 {products.map((p) => (
-                    <ProductCard key={p.id} product={p} />
+                    <ProductCard key={p.id} product={p} defaultColor={defaultColor}/>
                 ))}
             </div>
             <button className={styles.nav} onClick={scrollNext} aria-label="Next">

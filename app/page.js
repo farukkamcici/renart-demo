@@ -15,7 +15,7 @@ export default async function Page() {
 
     return (
         <main>
-            <header className="text-center text-3xl font-semibold my-8">
+            <header>
                 Product List
             </header>
 
