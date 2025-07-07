@@ -5,40 +5,49 @@
 }
 .starRow {
   display: inline-flex;
-  gap: 0.08rem;
-  font-size: 1.2rem;
+  gap: 0.08em;
+  font-size: 1.2em;
+  line-height: 1;
 }
 .scoreText {
-  color:#010101;
+  color: #010101;
   font-size: 14px;
-  margin-left: .4rem;
+  margin-left: .4em;
   font-family: var(--font-monospace, monospace);
 }
+
 .full {
   color: gold;
   display: inline-block;
   position: relative;
   z-index: 2;
 }
+
 .empty {
   color: #ddd;
   display: inline-block;
-  position: absolute;
-  left: 0; top: 0;
+  position: relative;
   z-index: 1;
 }
+
 .starPartial {
   position: relative;
   display: inline-block;
-  width: 1rem;
-  .full {
-    position: absolute;
-    left: 0; top: 0;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  .empty {
-    position: absolute;
-    left: 0; top: 0;
-  }
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+.starPartial .full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 100%;
+}
+.starPartial .empty {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
 }

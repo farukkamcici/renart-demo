@@ -18,7 +18,6 @@ export default function ProductList({ products }) {
         const cardWidth = firstCard.offsetWidth;
         setCardStep(cardWidth + GAP);
 
-        // Yeniden boyutlandırmada güncellemek istersen:
         const onResize = () => {
             const w = firstCard.offsetWidth;
             setCardStep(w + GAP);
