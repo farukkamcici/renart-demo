@@ -25,9 +25,8 @@ export default function ProductFilter({ initialProducts }) {
         minPopularity: minPopularityInput,
         colors: colorsInput,
     });
-    const [defaultColor, setDefaultColor] = useState(
-        colorsInput.length === 1 ? colorsInput[0] : undefined
-    );
+    const [defaultColor, setDefaultColor] = useState(colorsInput[0] ?? "yellow");
+
 
     // 3) Products state
     const [products, setProducts] = useState(initialProducts);
@@ -46,7 +45,8 @@ export default function ProductFilter({ initialProducts }) {
             minPopularity: minPopularityInput,
             colors: colorsInput,
         });
-        setDefaultColor(colorsInput.length === 1 ? colorsInput[0] : undefined);
+        setDefaultColor(colorsInput[0] ?? "yellow");
+
 
         // build query string & update URL
         const qp = new URLSearchParams();

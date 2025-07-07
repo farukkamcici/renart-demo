@@ -16,7 +16,6 @@ const ProductCard = ({product, defaultColor}) => {
         if (defaultColor) {
             setColor(defaultColor);
         }
-
     }, [defaultColor])
 
     const imageUrl =
