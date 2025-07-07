@@ -12,17 +12,25 @@ export async function  GET (request) {
     const minPopularity = Number (url.searchParams.get('minPopularity')) || 0;
     const color = url.searchParams.get('color') || null;
 
-    const enriched = products.map(p => ({
-        ...p,
-        price: priceCalculator(p.popularityScore, p.weight, goldPrice)
-    }))
+    if (products) {
+        const enriched = products.map(p => ({
+            ...p,
+            price: priceCalculator(p.popularityScore, p.weight, goldPrice)
+        }))
 
-    const filtered = enriched.filter( p =>
-        p.price >= minPrice &&
-        p.price <= maxPrice &&
-        p.popularityScore >= minPopularity &&
-        ( !color || p.images[color] )
+        const filtered = enriched.filter( p =>
+            p.price >= minPrice &&
+            p.price <= maxPrice &&
+            p.popularityScore >= minPopularity &&
+            ( !color || p.images[color] )
+        )
+
+        return NextResponse.json(filtered)
+    }
+
+    return NextResponse.json(
+        {error: {message: 'Products not found', code: 'PRODUCTS_NOT_FOUND'}},
+        {statstus: 404}
     )
 
-    return NextResponse.json(filtered)
 }
