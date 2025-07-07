@@ -30,7 +30,7 @@ export async function  GET (request) {
 
     return NextResponse.json(
         {error: {message: 'Products not found', code: 'PRODUCTS_NOT_FOUND'}},
-        {statstus: 404}
+        {status: 404}
     )
 
 }

@@ -11,14 +11,14 @@
 }
 
 main{
-  padding: 1rem;
+  padding: 1.5rem 1rem;
 
   @media (min-width: 480px) {
-    padding: 2rem;
+    padding: 1.75rem;
   }
 
   @media (min-width: 768px) {
-    padding: 3rem;
+    padding: 2.25rem;
   }
 
   header{

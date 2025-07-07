@@ -1,11 +1,13 @@
 import React from 'react';
 import ProductList from './components/ProductList';
+import ProductFilter from './components/ProductFilter';
 import '../styles/globals.scss';
 
 const Page = async () => {
     let products = [];
 
-    const API_URL = 'https://renart-demo.vercel.app/api';
+    const API_URL = 'HTTP://localhost:3000/api';
+
 
     try {
         const res = await fetch(API_URL + `/products`);
@@ -18,8 +20,7 @@ const Page = async () => {
     return (
         <main>
             <header>Product List</header>
-
-            <ProductList products={products} />
+            <ProductFilter initialProducts = {products}/>
         </main>
     );
 };
