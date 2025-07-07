@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductList from './components/ProductList';
+import '../styles/globals.scss';
 
 const Page = async () => {
     let products = [];
@@ -14,18 +15,10 @@ const Page = async () => {
         console.error(error.message || 'Error fetching products');
     }
 
-    if (!products.length) {
-        return (
-            <main>
-                <h1>Products</h1>
-                <p>No products found</p>
-            </main>
-        );
-    }
-
     return (
         <main>
-            <h1>Products</h1>
+            <header>Product List</header>
+
             <ProductList products={products} />
         </main>
     );

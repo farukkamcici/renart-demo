@@ -1,0 +1,51 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.scrollContainer {
+  display: flex;
+  gap: 3rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  margin: 1rem 4rem;
+  /* gizli scrollbar */
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+
+.scrollContainer > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  height: 100%;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 4rem;
+  font-weight: lighter;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  z-index: 1;
+}
+.nav:first-of-type { left: 0; }
+.nav:last-of-type  { right: 0; }
+
+.empty {
+  text-align: center;
+}
+
+
+
+.empty {
+  text-align: center;
+}
+
+//*{
+//  align-content: center;
+//}
