@@ -1,4 +1,3 @@
-// app/api/products/route.js
 import { getGoldPrice } from "@/lib/goldService";
 import productsData from "@/data/products.json";
 import { priceCalculator } from "@/lib/priceCalculator";
@@ -7,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
 
-    // Parse numeric query parameters
+    // 1) Query parametrelerini parse et
     const minPrice = searchParams.has("minPrice")
         ? Number(searchParams.get("minPrice"))
         : 0;
@@ -18,38 +17,40 @@ export async function GET(request) {
         ? Number(searchParams.get("minPopularity"))
         : 0;
 
-    // Parse color list (comma-separated)
+    // 2) Color listesi
     const colorParam = searchParams.get("color");
     const colors = colorParam ? colorParam.split(",") : [];
 
-    // Fetch gold price with fallback
+    // 3) Gold price fetch + fallback
     let goldPrice = 0;
     try {
         const gp = await getGoldPrice();
         goldPrice = gp.price;
     } catch (err) {
-        console.warn("GoldAPI fetch failed, using fallback price=0", err);
+        console.warn("GoldAPI fetch failed, fallback goldPrice=0", err);
     }
 
-    // Enrich products with computed price
-    const enriched = productsData.map(p => ({
+    // 4) Ürünleri enrich et
+    const enriched = productsData.map((p) => ({
         ...p,
         price: priceCalculator(p.popularityScore, p.weight, goldPrice),
     }));
 
-    console.log(minPopularity)
-    console.log(p.popularityScore)
-    // Filter products based on criteria
-    const filtered = enriched.filter(p => {
-        // 1) Price range
+    // 5) Filtre uygula
+    const filtered = enriched.filter((p) => {
+        // a) Price aralığı
         if (p.price < minPrice || p.price > maxPrice) return false;
-        // 2) Minimum popularity
-        if (p.popularityScore < minPopularity) return false;
-        // 3) Color filter: if any colors selected, require at least one match
+
+        // b) Popularity (0–1) → 0–5 yıldız
+        const starRating = p.popularityScore * 5;
+        if (starRating < minPopularity) return false;
+
+        // c) Renk
         if (colors.length > 0) {
-            const hasOne = colors.some(col => p.images && p.images[col]);
-            if (!hasOne) return false;
+            const ok = colors.some((col) => p.images && p.images[col]);
+            if (!ok) return false;
         }
+
         return true;
     });
 

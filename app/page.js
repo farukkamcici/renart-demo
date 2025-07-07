@@ -1,21 +1,21 @@
-import React, { Suspense } from 'react'
-import ProductFilter from './components/ProductFilter'
-import '../styles/globals.scss'
+import React, { Suspense } from "react";
+import ProductFilter from "./components/ProductFilter";
+import "../styles/globals.scss";
 
 export default async function Page() {
-    let initialProducts = []
-
+    let initialProducts = [];
     try {
-        const res = await fetch('https://renart-demo.vercel.app/api/products', { cache: 'no-store' })
-        if (!res.ok) throw new Error('Products can not be fetched')
-        initialProducts = await res.json()
+        // same‐origin fetch
+        const res = await fetch("/api/products", { cache: "no-store" });
+        if (!res.ok) throw new Error("Products can not be fetched");
+        initialProducts = await res.json();
     } catch (err) {
-        console.error('Error fetching initial products:', err)
+        console.error("Error fetching initial products:", err);
     }
 
     return (
         <main>
-            <header>
+            <header className="text-center text-3xl font-semibold my-8">
                 Product List
             </header>
 
@@ -23,5 +23,5 @@ export default async function Page() {
                 <ProductFilter initialProducts={initialProducts} />
             </Suspense>
         </main>
-    )
+    );
 }
