@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styles from './ProductCard.module.scss';
+import PartialStars from './PartialStars';
 
 const ProductCard = ({product}) => {
     const {id, name, popularityScore, weight, images, price} = product;
@@ -31,7 +32,7 @@ const ProductCard = ({product}) => {
                 {colorMap.map((c) => (
                     <button
                     key={c.key}
-                    className={styles.pickerBtn}
+                    className={`${styles.pickerBtn} ${c.key === color ? styles.btnActive : ''}`}
                     style={c.style}
                     onClick={() => setColor(c.key)}
                     aria-label={c.label}/>
@@ -40,10 +41,7 @@ const ProductCard = ({product}) => {
                 <p className={styles.desc}> {selectedColor.label} Gold</p>
             </section>
 
-            <p className={styles.popularity}>
-                {'★'.repeat(Math.round(popularityScore * 5))}{' '}
-                {popularityScore.toFixed(1)}
-            </p>
+            <PartialStars score={popularityScore * 5} outOf={5} />
 
 
         </div>

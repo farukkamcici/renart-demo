@@ -1,0 +1,44 @@
+.starWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+.starRow {
+  display: inline-flex;
+  gap: 0.08rem;
+  font-size: 1.2rem;
+}
+.scoreText {
+  color:#010101;
+  font-size: 14px;
+  margin-left: .4rem;
+  font-family: var(--font-monospace, monospace);
+}
+.full {
+  color: gold;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+.empty {
+  color: #ddd;
+  display: inline-block;
+  position: absolute;
+  left: 0; top: 0;
+  z-index: 1;
+}
+.starPartial {
+  position: relative;
+  display: inline-block;
+  width: 1rem;
+  .full {
+    position: absolute;
+    left: 0; top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .empty {
+    position: absolute;
+    left: 0; top: 0;
+  }
+}
