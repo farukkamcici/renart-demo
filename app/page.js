@@ -2,6 +2,9 @@ import React, { Suspense } from "react";
 import ProductFilter from "./components/ProductFilter";
 import "../styles/globals.scss";
 
+export const metadata = {
+    title: 'Renart Demo',
+}
 export default async function Page() {
     let initialProducts = [];
     try {
