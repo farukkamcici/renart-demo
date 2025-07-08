@@ -1,7 +1,45 @@
-:root {
-  --font-sans: var(--font-avenir);
-  --font-serif: var(--font-montserrat);
+@font-face {
+  font-family: 'Avenir';
+  src:
+          url('/fonts/Avenir-Book.ttf') format('truetype'),
+          url('/fonts/Avenir-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
+@font-face {
+  font-family: 'Avenir';
+  src:
+          url('/fonts/Avenir-Medium.ttf') format('truetype'),
+          url('/fonts/Avenir-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src:
+          url('/fonts/Montserrat-Regular.ttf') format('truetype'),
+          url('/fonts/Montserrat-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src:
+          url('/fonts/Montserrat-Medium.ttf') format('truetype'),
+          url('/fonts/Montserrat-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-avenir: 'Avenir', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+
 
 
 * {
@@ -23,6 +61,8 @@ main{
 
   header{
     font-size: 25px;
+    font-family: var(--font-avenir), sans-serif;
+    font-weight: 400;
 
     @media (min-width: 480px) {
       font-size: 35px;

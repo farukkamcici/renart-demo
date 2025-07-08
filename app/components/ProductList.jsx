@@ -39,7 +39,7 @@ export default function ProductList({ products, defaultColor }) {
     };
 
     if (!products.length) {
-        return <p className={styles.empty}>No products found.</p>;
+        return <p className={styles.empty}>No products found with this filters.</p>;
     }
 
     return (

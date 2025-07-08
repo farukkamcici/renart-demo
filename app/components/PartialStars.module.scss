@@ -11,9 +11,10 @@
 }
 .scoreText {
   color: #010101;
-  font-size: 14px;
   margin-left: .4em;
-  font-family: var(--font-monospace, monospace);
+  font-size: 14px;
+  font-family: var(--font-avenir), sans-serif;
+  font-weight: 400;
 }
 
 .full {

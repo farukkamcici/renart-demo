@@ -46,11 +46,15 @@
   h3 {
     padding-top: 1rem;
     font-size: 15px;
+    font-family: var(--font-montserrat), sans-serif;
+    font-weight: 500;
   }
 
   .price {
     padding-top: 0.5rem;
     font-size: 15px;
+    font-family: var(--font-montserrat), sans-serif;
+    font-weight: 400;
   }
 
   .colorPicker {
@@ -76,5 +80,7 @@
   .desc {
     margin-top: 0.5rem;
     font-size: 12px;
+    font-family: var(--font-avenir), sans-serif;
+    font-weight: 400;
   }
 }

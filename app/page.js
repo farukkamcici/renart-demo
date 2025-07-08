@@ -14,11 +14,11 @@ export default async function Page() {
 
     return (
         <main>
-            <header className="text-center text-3xl font-semibold my-8">
+            <header>
                 Product List
             </header>
 
-            <Suspense fallback={<div className="text-center py-8">Loading filters…</div>}>
+            <Suspense fallback={<div>Loading filters…</div>}>
                 <ProductFilter initialProducts={initialProducts} />
             </Suspense>
         </main>
