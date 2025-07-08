@@ -8,7 +8,6 @@ export default function ProductFilter({ initialProducts }) {
     const router = useRouter();
     const params = useSearchParams();
 
-    // 1) Input state
     const [minPriceInput, setMinPriceInput] = useState(params.get("minPrice") ?? "");
     const [maxPriceInput, setMaxPriceInput] = useState(params.get("maxPrice") ?? "");
     const [minPopularityInput, setMinPopularityInput] = useState(
@@ -18,7 +17,6 @@ export default function ProductFilter({ initialProducts }) {
         params.get("color")?.split(",") || []
     );
 
-    // 2) Applied filters + defaultColor state
     const [appliedFilters, setAppliedFilters] = useState({
         minPrice: minPriceInput,
         maxPrice: maxPriceInput,
@@ -28,17 +26,14 @@ export default function ProductFilter({ initialProducts }) {
     const [defaultColor, setDefaultColor] = useState(colorsInput[0] ?? "yellow");
 
 
-    // 3) Products state
     const [products, setProducts] = useState(initialProducts);
 
-    // toggle for input colors only
     const toggleColorInput = (col) =>
         setColorsInput((prev) =>
             prev.includes(col) ? prev.filter((c) => c !== col) : [...prev, col]
         );
 
     const handleApply = async () => {
-        // update appliedFilters & defaultColor
         setAppliedFilters({
             minPrice: minPriceInput,
             maxPrice: maxPriceInput,
@@ -48,7 +43,6 @@ export default function ProductFilter({ initialProducts }) {
         setDefaultColor(colorsInput[0] ?? "yellow");
 
 
-        // build query string & update URL
         const qp = new URLSearchParams();
         if (minPriceInput) qp.set("minPrice", minPriceInput);
         if (maxPriceInput) qp.set("maxPrice", maxPriceInput);
@@ -59,7 +53,6 @@ export default function ProductFilter({ initialProducts }) {
         const qs = qp.toString();
         router.replace(`?${qs}`, { shallow: true });
 
-        // fetch filtered products
         try {
             const res = await fetch(`/api/products?${qs}`);
             if (!res.ok) throw new Error(`Fetch failed ${res.status}`);
@@ -74,7 +67,6 @@ export default function ProductFilter({ initialProducts }) {
     return (
         <div className={styles.container}>
             <div className={styles.filterBox}>
-                {/* Min Price */}
                 <div className={styles.group}>
                     <label>Min Price ($)</label>
                     <input
@@ -86,7 +78,6 @@ export default function ProductFilter({ initialProducts }) {
                     />
                 </div>
 
-                {/* Max Price */}
                 <div className={styles.group}>
                     <label>Max Price ($)</label>
                     <input
@@ -98,23 +89,22 @@ export default function ProductFilter({ initialProducts }) {
                     />
                 </div>
 
-                {/* Min Popularity */}
                 <div className={styles.group}>
-                    <label>Min Popularity</label>
-                    <select
-                        value={minPopularityInput}
-                        onChange={(e) => setMinPopularityInput(e.target.value)}
-                    >
-                        <option value="0">All</option>
-                        {[1, 2, 3, 4, 5].map((n) => (
-                            <option key={n} value={n}>
-                                {n}★
-                            </option>
-                        ))}
-                    </select>
+                    <label>Min Rating</label>
+                     <select
+                       value={minPopularityInput}
+                       onChange={e => setMinPopularityInput(e.target.value)}
+                       className={styles.starSelect}
+                     >
+                       <option value="0">All</option>
+                       {[1,2,3,4,5].map(n => (
+                         <option key={n} value={n}>
+                               {Array(n).fill('★').join('')}
+                             </option>
+                       ))}
+                     </select>
                 </div>
 
-                {/* Color */}
                 <div className={styles.group}>
                     <label>Color</label>
                     <div className={styles.colors}>
@@ -134,7 +124,6 @@ export default function ProductFilter({ initialProducts }) {
                     </div>
                 </div>
 
-                {/* Apply */}
                 <button
                     className={styles.applyBtn}
                     onClick={handleApply}

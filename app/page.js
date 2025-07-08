@@ -5,7 +5,6 @@ import "../styles/globals.scss";
 export default async function Page() {
     let initialProducts = [];
     try {
-        // same‐origin fetch
         const res = await fetch("https://renart-demo.vercel.app/api/products", { cache: "no-store" });
         if (!res.ok) throw new Error("Products can not be fetched");
         initialProducts = await res.json();
